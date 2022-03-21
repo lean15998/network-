@@ -52,3 +52,12 @@ if [ "$all_devices" != 0 ];then
                 fi
                 done
                 for((b=1;b<$a;b++));do
+                        echo "CRITICAL: Following devices:${inactive_devices[$b]}, state=${state_fail[$b]}, ${fail[$b]}"
+                        done
+        fi
+else
+        echo "UNKNOWN: can't show all devices"
+        exit $STATE_UNKNOWN
+fi
+exit $STATE_CRITICAL
+
