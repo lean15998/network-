@@ -51,9 +51,25 @@ PING 10.10.10.11 (10.10.10.11) 56(84) bytes of data.
 64 bytes from 10.10.10.11: icmp_seq=2 ttl=63 time=1.82 ms
 64 bytes from 10.10.10.11: icmp_seq=3 ttl=63 time=1.81 ms
 ```
+#### B3: Định tuyến host01 -> host03
+
+```sh
+root@host01:~# ip route add 10.10.10.0/24 via 10.0.0.51
+```
+```sh
+root@host03:~# ip route add 10.0.0.0/24 via 10.10.10.11
+```
+- ping thử
+```sh
+root@host01:~# ping 10.10.10.51
+PING 10.10.10.51 (10.10.10.51) 56(84) bytes of data.
+64 bytes from 10.10.10.51: icmp_seq=1 ttl=63 time=1.47 ms
+64 bytes from 10.10.10.51: icmp_seq=2 ttl=63 time=1.43 ms
+64 bytes from 10.10.10.51: icmp_seq=3 ttl=63 time=1.36 ms
+```
 #### B3: Định tuyến host01 -> host04
 ```sh
-root@host02:~# ip route add 172.16.1.0/24 via 10.0.0.51
+root@host01:~# ip route add 172.16.1.0/24 via 10.0.0.51
 ```
 ```sh
 root@host04:~# ip route add 10.0.0.0/24 via 10.10.10.11
