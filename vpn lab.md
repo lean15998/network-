@@ -71,8 +71,9 @@ client.ovpn  openvpn-ubuntu-install.sh  snap
  ```
  ###  Trên Client
  
- <img src="">
- 
+ <img src="https://github.com/lean15998/network-/blob/main/images/01.png">
+ <img src="https://github.com/lean15998/network-/blob/main/images/02.png">
+ <img src="https://github.com/lean15998/network-/blob/main/images/03.png">
  
  ```sh
  root@client:~# ip a | grep tun0
