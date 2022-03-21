@@ -135,6 +135,8 @@ root@quynv:~# iptables -A FORWARD -p tcp -i ens33 -o ens38 -d 10.10.10.51 --dpor
 ```
 Cho phép 1 máy (host01) trong dải 10.0.0.0/24 quản trị Webserver.
 ```sh
+root@host01:~# ip route add 10.10.10.0/24 via 10.0.0.51
+root@host01:~# ip route add 10.0.0.0/24 via 10.10.10.11
 root@quynv:~# iptables -A FORWARD -i ens34 -o ens38 -p tcp -s 10.0.0.52 -d 10.10.10.51 --dport 22 -j ACCEPT
 ```
 - Cho phép các máy trong dải 10.0.0.0/24 kết nối ra Internet.
