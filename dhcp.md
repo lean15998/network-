@@ -5,7 +5,7 @@
 <ul>
   <ul>
     <li> Khi client (được cấu hình để sử dụng DHCP) và được kết nối với mạng, nó sẽ chuyển tiếp thông báo DHCPDISCOVER đến máy chủ DHCP server. Và sau khi DHCP server nhận được thông báo yêu cầu DHCPDISCOVER, nó sẽ trả lời bằng DHCPOFFER.
-    <li> Sau đó, client nhận được thông báo DHCPOFFER và nó sẽ gửi một thông điệp DHCPREQUEST đến cho server biết, nó đã được chuẩn bị để nhận cấu hình mạng được cung cấp trong tin nhắn DHCPOFFE.
+    <li> Sau đó, client nhận được thông báo DHCPOFFER và nó sẽ gửi một thông điệp DHCPREQUEST đến cho server biết, nó đã được chuẩn bị để nhận cấu hình mạng được cung cấp trong tin nhắn DHCPOFFER.
     <li> Cuối cùng DHCP server nhận thông báo DHCPREQUEST từ client và gửi tin nhắn DHCPACK cho client hiện phép sử dụng địa chỉ IP được gán.
   </ul>
 </ul>
