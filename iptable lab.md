@@ -142,5 +142,6 @@ root@quynv:~# iptables -A FORWARD -i ens34 -o ens38 -p tcp -s 10.0.0.52 -d 10.10
 - Cho phép các máy trong dải 10.0.0.0/24 kết nối ra Internet.
 
 ```sh
-root@quynv:~# iptables -A INPUT -s 192.168.18.29 -j DROP
+root@quynv:~# iptables -A FORWARD -i ens34 -o ens33 -j ACCEPT
+root@quynv:~# iptables -t nat -A POSTROUTING -o ens33 -s 10.0.0.0/24 -j SNAT --to-source 192.168.18.47
 ```
