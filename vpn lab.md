@@ -1,4 +1,22 @@
-# 1. Mô hình
+# 1. Lý thuyết
+
+-  VPN (Virtual Private Network) - mạng riêng ảo, là một công nghệ mạng giúp tạo kết nối mạng an toàn khi tham gia vào mạng công cộng như Internet hoặc mạng riêng do một nhà cung cấp dịch vụ sở hữu. Các tập đoàn lớn, các cơ sở giáo dục và cơ quan chính phủ sử dụng công nghệ VPN để cho phép người dùng từ xa kết nối an toàn đến mạng riêng của cơ quan mình.
+-  Bản chất giao thức VPN là một tập hợp gồm nhiều giao thức. Mỗi loại giao thức có những chức năng khác nhau:
+<ul>
+  <ul>
+<li> Tunnelling: Là kỹ thuật truyền dữ liệu qua nhiều mạng có giao thức khác nhau. VPN có chức năng cơ bản là phân phối các gói từ điểm này tới điểm khác một cách bảo mật. Để làm được điều đó thì tất cả các gói dữ liệu cần được định dạng sao cho chỉ máy khách và máy chủ hiểu được. Bên gửi dữ liệu sẽ định dạng chúng theo Tunnelling để bên nhận có thể trích xuất được thông tin.
+<li> Mã hóa: Vì Tunnelling không có tính năng bảo vệ nên bất cứ ai cũng có thể trích xuất dữ liệu. Khi đó, bạn cần phải mã hóa trên đường truyền sao cho chỉ bên nhận mới có thể giải mã.
+<li> Quản lý phiên: Là cách duy trì phiên để khách hàng tiếp tục giao tiếp trong một khoảng thời gian nhất định.
+<li> Xác thực: Là cách xác nhận danh tính để bảo mật an toàn hơn.
+  </ul>
+  </ul>
+  
+### Phân loại VPN
+
+- Site-to-Site VPN: là mô hình dùng để kết nối các hệ thống mạng ở các nơi khác nhau tạo thành một hệ thống mạng thống nhất. Ở loại kết nối này thì việc chứng thực an đầu phụ thuộc vào thiết bị đầu cuối ở các Site, các thiết bị này hoạt động như Gateway và đây là nơi đặt nhiều chính sách bảo mật nhằm truyền dữ liệu một cách an toàn giữa các Site.
+
+- Remote Access VPN: loại này thường áp dụng cho nhân viên làm việc lưu động hay làm việc ở nhà muốn kết nối vào mạng công ty một cách an toàn. Cũng có thể áp dụng cho văn phòng nhỏ ở xa kết nối vào Văn phòng trung tâm của công ty. Remote Access VPN còn được xem như là dạng User-to-LAN, cho phép người dùng ở xa dùng phần mềm VPN Client kết nối với VPN Server. VPN hoạt động nhờ vào sự kết hợp với các giao thức đóng gói PPTP, L2TP, IPSec, GRE, MPLS, SSL, TLS.
+  # 2. Mô hình
 
 ```sh
                                   
