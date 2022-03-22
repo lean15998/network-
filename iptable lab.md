@@ -65,7 +65,7 @@ root@quynv:~# iptables -t nat -A POSTROUTING -o ens34 -d 10.0.0.53 -j SNAT --to-
 ```sh
 root@quynv:~# iptables -A FORWARD -p tcp -i ens33 -o ens34 -d 10.0.0.52 --dport 80 -j ACCEPT
 ```
-- FORWARD gói tin đến port 443 trên ens33 đến port tương tự trên Backend2.
+- FORWARD gói tin đến port 443 trên ens33 đến port tương tự trên h2.
 ```sh
 root@quynv:~# iptables -A FORWARD -p tcp -i ens33 -o ens34 -d 10.0.0.53 --dport 443 -j ACCEPT
 ```
