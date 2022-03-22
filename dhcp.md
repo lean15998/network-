@@ -56,7 +56,7 @@ root@client:~# netplan apply
 ```
 
 ```sh
-root@cl:~# ip a | grep ens34
+root@client:~# ip a | grep ens34
 3: ens34: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     inet 10.0.0.203/24 brd 10.0.0.255 scope global dynamic ens34
 ```
