@@ -12,23 +12,54 @@
 
 # 2.Cấu hình DHCP sử dụng isc dhcp server
 
-## 2.1. Cấu hình tại DHCP Server
+## Cấu hình tại DHCP Server
 
 - Cài đặt gói `dhcp-server`.
+```sh
+root@server:~# apt -y install isc-dhcp-server
+```
 - Cấu hình tại file `/etc/dhcp/dhcpd.conf`. 
-<br>
-<img src="https://github.com/lean15998/Linux/blob/main/images/23.1.PNG">
-<br>
 
-## 2.2. Cấu hình tại DHCP Client
+```sh
+# add to the end
+subnet 10.0.0.0 netmask 255.255.255.0 {
+    # specify default gateway
+    option routers 10.0.0.1;
+    # specify subnet-mask
+    option subnet-mask 255.255.255.0;
+    # specify the range of leased IP address
+    range dynamic-bootp 10.0.0.200 10.0.0.254;
+}
+```
+- Khởi động lại dịch vụ
+```sh
+root@server:~# systemctl restart isc-dhcp-server
+```
 
-- Cài đặt gói `dhcp-client`
+##  Tại DHCP Client
 
 - Cấu hình interface về chế độ DHCP và kiểm tra .
-<br>
-<img src="https://github.com/lean15998/Linux/blob/main/images/23.2.PNG">
-<br>
+```sh
 
+root@client:~# vi /etc/netplan/01-netcfg.yaml
+ 
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens34:
+      dhcp4: yes
+```
+
+```sh
+root@client:~# netplan apply
+```
+
+```sh
+root@cl:~# ip a | grep ens34
+3: ens34: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    inet 10.0.0.203/24 brd 10.0.0.255 scope global dynamic ens34
+```
 
 
 
