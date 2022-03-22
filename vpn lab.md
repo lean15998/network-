@@ -1,22 +1,21 @@
-# 1. Mo hinh
+# 1. Mô hnh
 
 ```sh
-                                  ens33 |
+                                  
                             +-----------+-----------+                 +-------------------+
                             |       [VPNServer]     |                 |    [VPNClient]    |
-                            |       10.10.10.11     |  10.10.10.0/24  |                   |
+                            |       10.10.10.11     | 192.168.18.0/24 |                   |
                             |        10.0.0.51      +-----------------+   192.168.18.171  |
-                            |      192.168.18.138   | ens38           |                   |
+                            |      192.168.18.138   | ens33           |                   |
                             |                       |                 |                   |
                             |                       |                 |                   |
                             +-----------+-----------+                 +-------------------+
-                                        | ens34
-                                        |
-                                        | 
-                        +----------------------------+
-                        |                            |                   
-                        |                            |           
-            +-----------+-----------+    +-----------+-----------+
+                               | ens34          | ens38
+                               |                | 
+                               |                |
+                               |                |            
+                               |                |             
+            +------------------+----+    +------+----------------+
             |        [host01]       |    |        [host02]       | 
             |                       |    |                       |   
             |        10.0.0.52      |    |      10.10.10.128     |    
@@ -86,11 +85,32 @@ client.ovpn  openvpn-ubuntu-install.sh  snap
 root@client:~# ip route del 10.10.10.10/24 via 10.8.0.1
 root@client:~# ip route del 10.0.0.0/24 via 10.8.0.1
 ```
- 
  ```sh
-root@host01:~# ip route del 10.8.0.0/24 via 10.0.0.51
+ root@client:~# ip route
+default via 192.168.18.1 dev ens33 proto dhcp metric 100 
+10.0.0.0/24 via 10.8.0.1 dev tun0 
+10.8.0.0/24 dev tun0 proto kernel scope link src 10.8.0.2 metric 50 
+10.10.10.0/24 via 10.8.0.1 dev tun0 
+169.254.0.0/16 dev ens37 scope link metric 1000 
+172.16.1.0/24 dev ens37 proto kernel scope link src 172.16.1.128 metric 101 
+192.168.18.0/24 dev ens33 proto kernel scope link src 192.168.18.171 metric 100 
+192.168.18.138 dev ens33 proto static scope link metric 100 
 ```
+### Ping
 
- ```sh
-root@host02:~# ip route del 10.8.0.0/24 via 10.10.10.11
+```sh
+root@client:~# ping 10.10.10.128
+PING 10.10.10.128 (10.10.10.128) 56(84) bytes of data.
+64 bytes from 10.10.10.128: icmp_seq=1 ttl=63 time=4.60 ms
+64 bytes from 10.10.10.128: icmp_seq=2 ttl=63 time=2.73 ms
+64 bytes from 10.10.10.128: icmp_seq=3 ttl=63 time=2.53 ms
+64 bytes from 10.10.10.128: icmp_seq=4 ttl=63 time=2.58 ms
+```
+```sh
+root@client:~# ping 10.0.0.52
+PING 10.0.0.52 (10.0.0.52) 56(84) bytes of data.
+64 bytes from 10.0.0.52: icmp_seq=1 ttl=63 time=1.46 ms
+64 bytes from 10.0.0.52: icmp_seq=2 ttl=63 time=2.55 ms
+64 bytes from 10.0.0.52: icmp_seq=3 ttl=63 time=2.70 ms
+64 bytes from 10.0.0.52: icmp_seq=4 ttl=63 time=2.78 ms
 ```
